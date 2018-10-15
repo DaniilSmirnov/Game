@@ -32,7 +32,7 @@ class Country:
         if action == 'delete':
             self.units.remove(unit)
         if action == 'add':
-            self.unita.append(unit)
+            self.units.append(unit)
 
 
 class Unit:
@@ -44,7 +44,10 @@ class Unit:
         self.country_id = country_id
         Country.units_actions("add", id)
 
-
+class Province:
+    def create(self, id, name):
+        self.name = name
+        self.id = id
 
 def main():
     pygame.init()  # Инициация PyGame, обязательная строчка
