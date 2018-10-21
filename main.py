@@ -5,7 +5,6 @@ from pygame import *
 WIN_WIDTH = 800  # Ширина создаваемого окна
 WIN_HEIGHT = 640  # Высота
 DISPLAY = (WIN_WIDTH, WIN_HEIGHT)  # Группируем ширину и высоту в одну переменную
-BACKGROUND_COLOR = "#004400"
 
 
 class Country:
@@ -44,24 +43,30 @@ class Unit:
         self.country_id = country_id
         Country.units_actions("add", id)
 
+
 class Province:
+
     def create(self, id, name):
         self.name = name
         self.id = id
+
 
 def main():
     pygame.init()  # Инициация PyGame, обязательная строчка
     screen = pygame.display.set_mode(DISPLAY)  # Создаем окошко
     pygame.display.set_caption("Типа стратегия")  # Пишем в шапку
-    background = Surface((WIN_WIDTH, WIN_HEIGHT))  # Создание видимой поверхности
     # будем использовать как фон
-    background.fill(Color(BACKGROUND_COLOR))  # Заливаем поверхность сплошным цветом
+    background_image = pygame.image.load("Provinces.png").convert()
 
     while 1:  # Основной цикл программы
         for e in pygame.event.get():  # Обрабатываем события
-            if e.type == QUIT:
-                raise (SystemExit, "QUIT")
-        screen.blit(background, (0, 0))  # Каждую итерацию необходимо всё перерисовывать
+            if e.type == pygame.QUIT:
+                sys.exit()
+        screen.blit(background_image, [0, 0])
+
+        if pygame.mouse.get_focused():
+            pos = pygame.mouse.get_pos()
+
         pygame.display.update()  # обновление и вывод всех изменений на экран
 
 
